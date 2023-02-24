@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>User Details</title>
+    <link rel="stylesheet" href="user.css">
+  </head>
+  <body>
+    <center><h1 style="color:rgba(218, 229, 19, 0.982);">User Details</h1></center>
+    <button id="logoutButton">Logout</button>
+    <div id="userDetails"></div>
+
+    <script>
+      const logoutButton = document.getElementById('logoutButton');
+      const userDetails = document.getElementById('userDetails');
+
+      // Check if user is logged in
+      if (!localStorage.getItem('name') || !localStorage.getItem('phone') || !localStorage.getItem('email')) {
+        window.location.href = 'index.html';
+      }
+
+      // Get user ID from URL parameter
+      const urlParams = new URLSearchParams(window.location.search);
+      const userId = urlParams.get('id');
+
+      // Fetch user details from the API and display on page
+      fetch(`https://reqres.in/api/users/${userId}`)
+        .then(response => response.json())
+        .then(data => {
+          userDetails.innerHTML = `
+          <img src="${data.data.avatar}" alt="User Avatar">
+            <h2>${data.data.first_name} ${data.data.last_name}</h2>
+            <p><strong>User Id:</strong> ${data.data.id}</p>
+            <p>Email: ${data.data.email}</p>
+          `;
+        })
+        .catch(error => console.error(error));
+
+      logoutButton.addEventListener('click', () => {
+        // Clear user details from local storage
+        localStorage.clear();
+
+        // Redirect to the login page
+        window.location.href = 'index.html';
+        
+
+      });
+    </script>
+    <div class="scroll-text"><center>
+      <marquee>Developed by VISHNU P, CSE</marquee><br>
+    </div>
+  </body>
+</html>

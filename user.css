@@ -1,0 +1,80 @@
+/* Style the user details */
+/* #userDetails {
+  margin-top: 50px;
+  text-align: center;
+} */
+
+#logoutButton {
+  float: right;
+  position:fixed;
+  right:10px;
+  top:5px;
+  margin: 20px;
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  background-color: #f44336;
+  color: #fff;
+  cursor: pointer;
+} 
+
+body {
+
+
+  background-color: #1ea59f;
+  background-image: url('./images/background_img_user.gif');
+
+
+}
+
+#userDetails{
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  padding: 20px;
+  text-align: center;
+  background-color: rgb(92, 200, 126);
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+  width: 500px;
+  margin: auto;
+  margin-top: 50px;
+}
+
+
+#userDetails h2 {
+  font-size: 24px;
+  margin-bottom: 10px;
+}
+
+#userDetails p {
+  font-size: 18px;
+  margin-bottom: 20px;
+}
+
+#userDetails img {
+  max-width: 200px;
+  border-radius: 50%;
+  box-shadow: 1px 1px 2px #ccc;
+}
+
+.scroll-text {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background-color: #666abc;
+  color: rgb(223, 236, 104);
+  text-align: center;
+  padding: 10px 0;
+}
+
+marquee {
+  font-size: 16px;
+  font-weight: bold;
+}
+
+/* Style the error message */
+#error {
+  color: red;
+  margin-top: 20px;
+}

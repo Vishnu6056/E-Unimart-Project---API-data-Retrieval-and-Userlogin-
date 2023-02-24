@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Home</title>
+    <link rel="stylesheet" href="home.css">
+  </head>
+  <body><center>
+    <h1 style="color:rgba(206, 35, 135, 0.982);">USER LIST</h1></center>
+    <button id="logoutButton">Logout</button>
+    <ul id="usersList"></ul>
+
+    <script>
+      const logoutButton = document.getElementById('logoutButton');
+      const usersList = document.getElementById('usersList');
+
+      // Check if user is logged in
+      if (!localStorage.getItem('name') || !localStorage.getItem('phone') || !localStorage.getItem('email')) {
+        window.location.href = 'index.html';
+      }
+
+      // Fetch data from the API and display in list view
+      fetch('https://reqres.in/api/users')
+        .then(response => response.json())
+        .then(data => {
+          data.data.forEach(user => {
+            const listItem = document.createElement('li');
+            listItem.innerHTML = `
+              <h2>${user.first_name} ${user.last_name}</h2>
+              <p>Email: ${user.email}</p>
+            `;
+            listItem.addEventListener('click', () => {
+              // Redirect to detailed view page
+              window.location.href = `user.html?id=${user.id}`;
+            });
+            usersList.appendChild(listItem);
+          });
+        })
+        .catch(error => console.error(error));
+
+      logoutButton.addEventListener('click', () => {
+        // Clear user details from local storage
+        localStorage.clear();
+
+        // Redirect to the login page
+        window.location.href = 'index.html';
+      });
+    </script>
+  </body>
+</html>
